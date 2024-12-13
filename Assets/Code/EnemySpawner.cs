@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour
 
 [Header("References")]
 [SerializeField] private GameObject[] enemyPrefabs;
+[SerializeField] private Bullet Bullet;
 
 [Header("Attributes")]
 [SerializeField] private int baseEnemies = 8;
