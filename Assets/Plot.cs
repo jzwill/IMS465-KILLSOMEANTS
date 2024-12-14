@@ -17,25 +17,30 @@ public class Plot : MonoBehaviour
     }
 
     private void OnMouseEnter() {
+        if (Time.timeScale != 0){
         sr.color = hoverColor;
+        }
     }
 
     private void OnMouseExit() {
+        if (Time.timeScale != 0){
         sr.color = startColor;
+        }
     }
 
     private void OnMouseDown() {
         if (tower != null) return;
+            if (Time.timeScale != 0){
+                Tower towerToBuild = BuildManager.main.GetSelectedTower();
 
-        Tower towerToBuild = BuildManager.main.GetSelectedTower();
+                if (towerToBuild.cost > LevelManager.main.currency) {
+                    Debug.Log("you cant afford this");
+                    return;
+                }
 
-        if (towerToBuild.cost > LevelManager.main.currency) {
-            Debug.Log("you cant afford this");
-            return;
+                LevelManager.main.SpendCurrency(towerToBuild.cost);
+
+                tower = Instantiate(towerToBuild.prefab, transform.position, Quaternion.identity);
         }
-
-        LevelManager.main.SpendCurrency(towerToBuild.cost);
-
-        tower = Instantiate(towerToBuild.prefab, transform.position, Quaternion.identity);
     }
 }
