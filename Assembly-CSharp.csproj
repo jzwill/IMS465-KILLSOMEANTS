@@ -74,6 +74,7 @@
     <Compile Include="Assets\Code\EnemyMovement.cs" />
     <Compile Include="Assets\Health.cs" />
     <Compile Include="Assets\Plot.cs" />
+    <Compile Include="Assets\MainMenu.cs" />
     <Compile Include="Assets\Code\EnemySpawner.cs" />
   </ItemGroup>
   <ItemGroup>
