@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
+using System;
+using UnityEngine.SceneManagement;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -18,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
 [Header("Events")]
 public static UnityEvent onEnemyDestroy = new UnityEvent(); 
 
-private int currentWave = 1;
+public int currentWave = 1;
 private float timeSinceLastSpawn; 
 private int enemiesAlive;
 private int enemiesLeftToSpawn;
@@ -81,5 +83,8 @@ private void Awake() {
         timeSinceLastSpawn = 0f;
         currentWave++;
         StartCoroutine(StartWave());
+        if (currentWave >= 10) {
+            SceneManager.LoadScene(3);
+        }
     }
 }

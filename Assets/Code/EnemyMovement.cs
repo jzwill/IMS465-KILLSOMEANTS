@@ -10,8 +10,11 @@ public class EnemyMovement : MonoBehaviour
     [Header("Attributes")]
     [SerializeField] private float moveSpeed = 2f;
 
+    [SerializeField] private int playerLivesWorth = 1;
+
     private Transform target;
     private int pathIndex = 0;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
@@ -27,6 +30,7 @@ public class EnemyMovement : MonoBehaviour
 
             if (pathIndex == LevelManager.main.path.Length) {
                 EnemySpawner.onEnemyDestroy.Invoke();
+                LevelManager.main.DecreaseLives(playerLivesWorth);
                 Destroy(gameObject);
                 return;
             } else {
